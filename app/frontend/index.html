@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UrbanCool AI Dashboard</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">UC</div>
+          <div>
+            <h1>UrbanCool AI</h1>
+            <p>Pune heat intelligence</p>
+          </div>
+        </div>
+
+        <section class="panel query-panel" aria-label="Location query">
+          <div class="panel-title">
+            <span>Location</span>
+            <button id="locateBtn" class="icon-btn" title="Use browser location" type="button">⌖</button>
+          </div>
+          <div class="coord-grid">
+            <label>
+              <span>Latitude</span>
+              <input id="latInput" type="number" step="0.000001" value="18.5204">
+            </label>
+            <label>
+              <span>Longitude</span>
+              <input id="lonInput" type="number" step="0.000001" value="73.8567">
+            </label>
+          </div>
+          <button id="analyzeBtn" class="primary-btn" type="button">
+            <span aria-hidden="true">↻</span>
+            Analyze Location
+          </button>
+        </section>
+
+        <section class="panel ward-panel" aria-label="Area information">
+          <div class="panel-title">Area Info</div>
+          <dl class="ward-dl">
+            <div><dt>Local Area</dt><dd id="wardName">--</dd></div>
+            <div><dt>Area Code</dt><dd id="wardId">--</dd></div>
+            <div><dt>Heat Risk</dt><dd><span id="sideRisk" class="risk-badge risk-unknown">--</span></dd></div>
+          </dl>
+        </section>
+
+        <section class="panel status-panel" aria-label="Area summary">
+          <div class="panel-title">City Heat Map</div>
+          <dl>
+            <div><dt>Mapped Places</dt><dd id="rowCount">--</dd></div>
+            <div><dt>Typical Heat</dt><dd id="meanLst">--</dd></div>
+            <div><dt>Heat Range</dt><dd id="lstRange">--</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel weather-panel" aria-label="Live weather">
+          <div class="panel-title">Current Weather</div>
+          <dl class="weather-dl">
+            <div><dt>Condition</dt><dd id="weatherCondition">--</dd></div>
+            <div><dt>Clouds</dt><dd id="cloudCover">--</dd></div>
+            <div><dt>Pressure</dt><dd id="pressure">--</dd></div>
+            <div><dt>Rain</dt><dd id="rainNow">--</dd></div>
+          </dl>
+          <p id="weatherSource" class="source-note">Weather updated after analysis</p>
+        </section>
+
+        <section class="legend panel" aria-label="Heat legend">
+          <div class="panel-title">Heat Map Legend</div>
+          <div class="legend-row"><i style="background:#277da1"></i><span>&lt; 30 °C - Cooler</span></div>
+          <div class="legend-row"><i style="background:#43aa8b"></i><span>30-34 °C - Mild</span></div>
+          <div class="legend-row"><i style="background:#f9c74f"></i><span>34-38 °C - Warm</span></div>
+          <div class="legend-row"><i style="background:#f3722c"></i><span>38-42 °C - Hot</span></div>
+          <div class="legend-row"><i style="background:#c1121f"></i><span>&gt; 42 °C - Very hot</span></div>
+          <div class="legend-row legend-icon-row">
+            <div class="legend-pins" aria-label="Intervention icons">
+              <span class="lp lp-trees" title="Trees"></span>
+              <span class="lp lp-roofs" title="Cool roofs"></span>
+              <span class="lp lp-water" title="Blue-green"></span>
+              <span class="lp lp-road" title="Pavement"></span>
+              <span class="lp lp-combined" title="Combined"></span>
+            </div>
+            <span>Intervention pins</span>
+          </div>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Live weather + city heat risk · Pune, India</p>
+            <h2>Click the map or enter coordinates to understand local heat and cooling options.</h2>
+          </div>
+        </header>
+
+        <section class="map-band" aria-label="Pune heat map">
+          <div id="map"></div>
+          <div id="mapFallback" class="map-fallback" hidden>
+            Map tiles did not load. Location analysis still works from the coordinate form.
+          </div>
+          <div class="map-hint" aria-hidden="true">Click any dot or map area to analyze</div>
+        </section>
+
+        <section class="insights-grid" aria-label="Heat insights">
+          <article class="metric tile-heat">
+            <span>Estimated Surface Heat</span>
+            <strong id="predLst">--</strong>
+            <span id="riskLevel" class="risk-badge risk-unknown">--</span>
+          </article>
+          <article class="metric tile-index">
+            <span id="hiLabel">Feels Like</span>
+            <strong id="heatIndex">--</strong>
+            <small id="weatherMeta">-- humidity · -- wind</small>
+          </article>
+          <article class="metric">
+            <span>Current Temperature</span>
+            <strong id="airTemp">--</strong>
+            <small id="obsLst">area heat --</small>
+          </article>
+          <article class="metric tile-best">
+            <span>Best Cooling</span>
+            <strong id="bestDelta">--</strong>
+            <small id="bestName">--</small>
+          </article>
+        </section>
+
+        <section class="summary-panel wide-panel" aria-label="Area summary">
+          <div class="section-head">
+            <h3>Area Summary</h3>
+            <span id="summaryUpdated" class="meta-tag">updates after analysis</span>
+          </div>
+          <div class="summary-layout">
+            <div class="summary-main">
+              <p id="areaSummaryText">
+                Select a location to see current weather, heat risk, future outlook, and recommended cooling action.
+              </p>
+              <div id="summaryBadges" class="summary-badges"></div>
+            </div>
+            <dl class="summary-facts">
+              <div><dt>Place</dt><dd id="summaryPlace">--</dd></div>
+              <div><dt>Current Date</dt><dd id="summaryCurrentDate">--</dd></div>
+              <div><dt>Current Temperature</dt><dd id="summaryCurrentTemp">--</dd></div>
+              <div><dt>Prediction Year</dt><dd id="summaryPredictionYear">--</dd></div>
+              <div><dt>Future Heat Outlook</dt><dd id="summaryFutureTemp">--</dd></div>
+              <div><dt>Best Action</dt><dd id="summaryAction">--</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="detail-layout">
+          <article class="wide-panel">
+            <div class="section-head">
+              <h3>Why Heat Increases Here</h3>
+              <span id="nearestGrid" class="meta-tag">nearby area --</span>
+            </div>
+            <div id="driversList" class="driver-list"></div>
+          </article>
+
+          <article class="wide-panel">
+            <div class="section-head">
+              <h3>Cooling Interventions</h3>
+              <span id="scenarioLatLon" class="meta-tag">--</span>
+            </div>
+            <div id="interventionCards" class="intervention-cards"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/assets/dashboard.js"></script>
+  </body>
+</html>

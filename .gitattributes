@@ -1,0 +1,17 @@
+* text=auto
+
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.tex text eol=lf
+*.sh text eol=lf
+*.json text eol=lf
+*.geojson text eol=lf
+
+*.pptx binary
+*.parquet binary
+*.pkl binary
+*.joblib binary
+

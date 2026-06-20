@@ -1,0 +1,45 @@
+{
+  "features": [
+    "NDVI_L",
+    "NDBI_L",
+    "MNDWI_L",
+    "EVI_L",
+    "SAVI_L",
+    "albedo",
+    "air_temp_C",
+    "humidity_pct",
+    "wind_speed",
+    "rainfall_mm",
+    "solar_rad_W_m2",
+    "Elevation_m",
+    "Slope_deg",
+    "TPI_500m",
+    "pop_density",
+    "road_density",
+    "building_density",
+    "impervious_ratio",
+    "lst_lag_1yr",
+    "lst_lag_2yr",
+    "lst_lag_5yr",
+    "ndvi_lag_1yr",
+    "ndvi_lag_2yr",
+    "ndvi_lag_5yr",
+    "lst_trend_5yr",
+    "ndvi_trend_5yr",
+    "ndbi_change_5yr"
+  ],
+  "regression_metrics": {
+    "mae": 0.021667711625853407,
+    "rmse": 0.05814806714824049,
+    "r2": 0.9997419352234382
+  },
+  "classification_metrics": {
+    "accuracy": 0.9985619035167996,
+    "f1": 0.9497716894977168,
+    "roc_auc": 0.9999288548035067
+  },
+  "train_rows": 30595,
+  "test_rows": 7649,
+  "hotspot_count_train": 440,
+  "hotspot_count_test": 110
+}

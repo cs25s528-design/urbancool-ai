@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments and local configuration
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+
+# IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+~$*
+
+# Download/cache artifacts
+cache/
+
+# Large local datasets and generated outputs
+data/raw/**
+data/processed/**
+data/outputs/**
+
+# Trained binary artifacts; keep small JSON model metadata
+models/*.pkl
+models/*.joblib
+models/*.pickle
+models/*.bin
+models/*.zip
+
+# Generated report lock/temporary files
+reports/~$*
+

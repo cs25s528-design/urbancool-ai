@@ -1,0 +1,49 @@
+{
+  "target": "lst_celsius",
+  "features": [
+    "NDVI_L",
+    "NDBI_L",
+    "MNDWI_L",
+    "EVI_L",
+    "SAVI_L",
+    "albedo",
+    "air_temp_C",
+    "air_temp_C_max",
+    "air_temp_C_min",
+    "humidity_pct",
+    "wind_speed",
+    "rainfall_mm",
+    "solar_rad_W_m2",
+    "Elevation_m",
+    "Slope_deg",
+    "TPI_500m",
+    "pop_density",
+    "ntl_radiance",
+    "children_ratio",
+    "elderly_ratio",
+    "road_density",
+    "building_density",
+    "impervious_ratio",
+    "dist_road_m",
+    "dist_park_m",
+    "dist_water_m"
+  ],
+  "backend": "xgboost_cuda",
+  "input": "/data/text_segmentation/Sanket/urbancool-ai/data/processed/pune_with_osm_features.parquet",
+  "row_count": 38244,
+  "train_rows": 30595,
+  "val_rows": 3824,
+  "test_rows": 3825,
+  "metrics": {
+    "validation": {
+      "mae": 1.0956783943471002,
+      "rmse": 1.4090450616473045,
+      "r2": 0.8449537144017293
+    },
+    "test": {
+      "mae": 1.1038461853226857,
+      "rmse": 1.4225858680423689,
+      "r2": 0.8478983338809759
+    }
+  }
+}

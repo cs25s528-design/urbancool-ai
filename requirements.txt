@@ -1,0 +1,34 @@
+# Core data stack
+numpy>=1.24
+pandas>=2.0
+pyarrow>=14.0
+scikit-learn>=1.3
+joblib>=1.3
+
+# Geospatial processing
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+rtree>=1.1
+osmnx>=1.8
+
+# Tree models and interpretation
+xgboost>=2.0
+lightgbm>=4.0
+shap>=0.44
+
+# Optimization and RL, all open-source/free
+pymoo>=0.6
+gymnasium>=0.29
+stable-baselines3>=2.2
+
+# API and reports
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.6
+reportlab>=4.0
+
+# Plotting/utilities
+matplotlib>=3.8
+tqdm>=4.66
+

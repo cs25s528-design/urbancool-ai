@@ -1,0 +1,38 @@
+{
+  "target": "lst_celsius",
+  "features": [
+    "NDVI_L",
+    "NDBI_L",
+    "MNDWI_L",
+    "EVI_L",
+    "SAVI_L",
+    "albedo",
+    "air_temp_C",
+    "air_temp_C_max",
+    "air_temp_C_min",
+    "humidity_pct",
+    "wind_speed",
+    "rainfall_mm",
+    "solar_rad_W_m2",
+    "Elevation_m",
+    "Slope_deg",
+    "TPI_500m",
+    "pop_density",
+    "ntl_radiance",
+    "children_ratio",
+    "elderly_ratio",
+    "road_density",
+    "building_density",
+    "impervious_ratio",
+    "dist_road_m"
+  ],
+  "unavailable_core_features": [],
+  "dropped_all_null_features": [],
+  "excluded_columns_present": [
+    ".geo",
+    "dist_park_m",
+    "dist_water_m",
+    "grid_id",
+    "system:index"
+  ]
+}

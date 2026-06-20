@@ -1,0 +1,1 @@
+# UrbanCool AI — Application layer
